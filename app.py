@@ -64,7 +64,7 @@ if selection == 'Visualization':
 
         # Plot PCA Scatter Plot for Agglomerative Clustering
         st.subheader("PCA Scatter Plot - Agglomerative Clustering")
-        fig, ax = plt.subplots(figsize=(8, 7))
+        fig, ax = plt.subplots(figsize=(10, 7))
         scatter = ax.scatter(pca_df_1[:, 0], pca_df_1[:, 1], c=hierarchical_df['group'], cmap='viridis')
         plt.colorbar(scatter, label='Cluster Label')
         ax.set_title("Visualization of Agglomerative Clustering")
@@ -94,7 +94,7 @@ if selection == 'Visualization':
 
         # Plot PCA Scatter Plot for GMM Clustering
         st.subheader("PCA Scatter Plot - GMM Clustering")
-        fig, ax = plt.subplots(figsize=(8, 7))
+        fig, ax = plt.subplots(figsize=(10, 7))
         scatter = ax.scatter(pca_df_2[:, 0], pca_df_2[:, 1], c=gmm_df['group'], cmap='viridis')
         plt.colorbar(scatter, label='Cluster Label')
         ax.set_title("Visualization of GMM Clustering")
@@ -206,7 +206,7 @@ elif selection == 'Input data':
             st.header(f"The input belongs to Cluster {user_cluster}")
                 
             def plot_clusters_with_user_input(pca_df_1, hierarchical_df, user_input_pca, user_cluster):
-                fig, ax = plt.subplots(figsize=(8, 7))
+                fig, ax = plt.subplots(figsize=(10, 7))
 
                 # Get unique cluster labels
                 unique_labels = np.unique(hierarchical_df['group'])
@@ -294,7 +294,7 @@ elif selection == 'Input data':
         st.header(f"The input belongs to Cluster {user_cluster}")
 
         def plot_clusters_with_user_input(pca_df_2,  gmm_df, user_input_pca):
-            fig, ax = plt.subplots(figsize=(8, 7))
+            fig, ax = plt.subplots(figsize=(10, 7))
 
             # Get unique cluster labels
             unique_labels = np.unique( gmm_df['group'])

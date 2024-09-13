@@ -21,9 +21,8 @@ st.set_page_config(page_title="Clustering App", layout="wide")
 preprocessed_df = pd.read_csv("preprocessed.csv")
 standardize_df = pd.read_csv("standardize.csv")
 encoded_df = pd.read_csv("encoded.csv")
-
 with open("scaler.pkl", "rb") as f:
-scaler = pickle.load(f)
+    scaler = pickle.load(f)
 
 preprocessed_df1 = preprocessed_df.drop(columns=['latitude', 'longitude', 'Pin code', 'Output', 'Feedback'], errors='ignore').copy()
 preprocessed_df2 = preprocessed_df.drop(columns=['Gender','Age','Occupation','Monthly Income','Marital Status','Family size','Pin code','Educational Qualifications'], errors='ignore').copy()
@@ -49,13 +48,13 @@ if selection == 'Visualization':
 
         # Hierarchical Clustering function
         def perform_clustering(n_clusters, affinity, linkage):
-        clustering_model1 = AgglomerativeClustering(
-            n_clusters=n_clusters,
-            affinity=affinity,
-            linkage=linkage
-        )
-        clustering_model1.fit(pca_df_1)
-        return clustering_model1
+            clustering_model1 = AgglomerativeClustering(
+                n_clusters=n_clusters,
+                affinity=affinity,
+                linkage=linkage
+            )
+            clustering_model1.fit(pca_df_1)
+            return clustering_model1
 
         # Perform clustering (Fit on the whole dataset)
         clustering_model1 = perform_clustering(n_clusters, affinity, linkage)
@@ -116,20 +115,20 @@ if selection == 'Visualization':
 
         # Add points for each cluster to the appropriate feature group
         for idx, row in gmm_df.iterrows():
-        group = row['group']
-        color = colors[group]  # Select color based on the group
-        folium.CircleMarker(
-            location=[row['latitude'], row['longitude']],
-            radius=5,
-            color=color,
-            fill=True,
-            fill_color=color,
-            popup=f'Cluster: {group}<br>Feedback: {row["Feedback"]}<br>Output: {row["Output"]}'
-        ).add_to(cluster_groups[group])
+            group = row['group']
+            color = colors[group]  # Select color based on the group
+            folium.CircleMarker(
+                location=[row['latitude'], row['longitude']],
+                radius=5,
+                color=color,
+                fill=True,
+                fill_color=color,
+                popup=f'Cluster: {group}<br>Feedback: {row["Feedback"]}<br>Output: {row["Output"]}'
+            ).add_to(cluster_groups[group])
 
         # Add feature groups to the map
         for group in cluster_groups.values():
-        group.add_to(m)
+            group.add_to(m)
 
         # Add a layer control to toggle the clusters
         folium.LayerControl().add_to(m)
@@ -207,7 +206,7 @@ elif selection == 'Input data':
             st.header(f"The input belongs to Cluster {user_cluster}")
                 
             def plot_clusters_with_user_input(pca_df_1, hierarchical_df, user_input_pca, user_cluster):
-                    fig, ax = plt.subplots(figsize=(10, 7))
+                fig, ax = plt.subplots(figsize=(10, 7))
 
                 # Get unique cluster labels
                 unique_labels = np.unique(hierarchical_df['group'])

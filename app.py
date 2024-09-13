@@ -39,7 +39,7 @@ pca_df_2 = pca2.fit_transform(standardize_df2)
 selection = st.sidebar.selectbox('Select Your Choice', ['Visualization', 'Input data'])
 
 if selection == 'Visualization':
-    algorithm = st.sidebar.selectbox('Select Clustering Algorithm', ['Hierachical Clustering', 'Spectral Clustering','Gaussian Mixture Model(GMM)'])
+    algorithm = st.sidebar.selectbox('Select Clustering Algorithm', ['Hierachical Clustering','Gaussian Mixture Model(GMM)'])
     if algorithm == 'Hierachical Clustering':
         st.header("Clustering Parameters")
         n_clusters = st.slider('Number of Clusters', min_value=2, max_value=10, value=2)

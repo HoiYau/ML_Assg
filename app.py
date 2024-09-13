@@ -379,7 +379,7 @@ elif selection == 'Input data':
                 group.add_to(m)
 
             # Add layer control to toggle clusters
-            folium.LayerControl().add_to(m)
+            folium.LayerControl(collapsed=False).add_to(m)
 
             # Display the map in Streamlit
             st_folium(m, width=1200, height=800)

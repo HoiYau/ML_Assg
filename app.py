@@ -365,7 +365,7 @@ elif selection == 'Input data':
             user_group = user_org_df['group'].values[0] 
             user_color = colors[user_group]  
                 
-            folium.CircleMarker(
+            folium.Marker(
                 location=[user_org_df['latitude'].values[0], user_org_df['longitude'].values[0]],
                 radius=10,
                 color=user_color,

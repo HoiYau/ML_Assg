@@ -382,10 +382,10 @@ elif selection == 'Input data':
                 group.add_to(m)
 
             # Add layer control to toggle clusters
-            folium.LayerControl(collapsed=False).add_to(m)
+            folium.LayerControl().add_to(m)
 
             # Display the map in Streamlit
-            st_folium(m, width=800, height=600)
+            st_folium(m, width=1200, height=800)
 
         # Call the updated function with the gmm_df and user_org_df
         plot_gmm_map_with_user_input(gmm_df, user_org_df)

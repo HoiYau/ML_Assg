@@ -297,12 +297,12 @@ elif selection == 'Input data':
             fig, ax = plt.subplots(figsize=(10, 7))
 
             # Get unique cluster labels
-            unique_labels = np.unique( gmm_df['group'])
+            unique_labels = np.unique(gmm_df['group'])
             num_labels = len(unique_labels)
-                        
+
             # Define a color map with enough distinct colors for each cluster
             colors = plt.get_cmap('viridis', num_labels)
-                        
+
             # Plot the clustering data points with a uniform color for each cluster
             for label in unique_labels:
                 cluster_data = pca_df_2[gmm_df['group'] == label]
@@ -310,30 +310,32 @@ elif selection == 'Input data':
                             color=colors(label), 
                             label=f'Cluster {label}', 
                             alpha=0.8)
-                        
-            # Plot the user input as a triangle
+
+            # Plot the user input with the same color as its assigned cluster
+            user_color = colors(user_cluster)  # Color for the user input's cluster
             ax.scatter(user_input_pca[0, 0], user_input_pca[0, 1], 
-                        color='red', 
-                        marker='^', 
-                        s=100, 
-                        label="User Input")
-                        
+                            color=user_color, 
+                            marker='^', 
+                            s=100, 
+                            label="User Input")
+
             # Add color bar for cluster labels
             norm = mcolors.Normalize(vmin=0, vmax=num_labels - 1)
             sm = plt.cm.ScalarMappable(cmap='viridis', norm=norm)
             sm.set_array([])
             cbar = plt.colorbar(sm, ax=ax, label='Cluster Label')
-                        
+
             # Set labels and title
-            ax.set_title("Visualization of Gaussian Mixture Model with User Input")
+            ax.set_title("Visualization of Gausian Mixture Model (GMM) with User Input")
             ax.set_xlabel("PCA Component 1")
             ax.set_ylabel("PCA Component 2")
-                        
+
             # Add legend
             ax.legend()
-                        
+
             # Display the plot in Streamlit
             st.pyplot(fig)
+
 
         plot_clusters_with_user_input(pca_df_2,  gmm_df, user_input_pca)
             

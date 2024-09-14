@@ -18,10 +18,10 @@ from streamlit_folium import st_folium
 
 st.set_page_config(page_title="Clustering App", layout="wide")
 
-preprocessed_df = pd.read_csv("preprocessed.csv")
-standardize_df = pd.read_csv("standardize.csv")
-encoded_df = pd.read_csv("encoded.csv")
-with open("scaler.pkl", "rb") as f:
+preprocessed_df = pd.read_csv("C:/Users/NITRO 5/Downloads/csv/preprocessed.csv")
+standardize_df = pd.read_csv("C:/Users/NITRO 5/Downloads/csv/standardize.csv")
+encoded_df = pd.read_csv("C:/Users/NITRO 5/Downloads/csv/encoded.csv")
+with open("C:/Users/NITRO 5/Downloads/csv/scaler.pkl", "rb") as f:
     scaler = pickle.load(f)
 
 preprocessed_df1 = preprocessed_df.drop(columns=['latitude', 'longitude', 'Pin code', 'Output', 'Feedback'], errors='ignore').copy()
@@ -39,8 +39,8 @@ pca_df_2 = pca2.fit_transform(standardize_df2)
 selection = st.sidebar.selectbox('Select Your Choice', ['Visualization', 'Input data'])
 
 if selection == 'Visualization':
-    algorithm = st.sidebar.selectbox('Select Clustering Algorithm', ['Hierachical Clustering','Gaussian Mixture Model(GMM)'])
-    if algorithm == 'Hierachical Clustering':
+    algorithm = st.sidebar.selectbox('Select Clustering Algorithm', ['Agglomerative Clustering','Gaussian Mixture Model(GMM)'])
+    if algorithm == 'Agglomerative Clustering':
         st.header("Clustering Parameters")
         n_clusters = st.slider('Number of Clusters', min_value=2, max_value=10, value=2)
         affinity = st.selectbox('Affinity', ['cosine', 'cityblock', 'euclidean'])
@@ -137,7 +137,7 @@ if selection == 'Visualization':
         st_folium(m, width=1200, height=800)
 
 elif selection == 'Input data':
-    predict = st.sidebar.selectbox('Select Clustering Algorithm', ['Hierachical Clustering','Gaussian Mixture Model (GMM)'])
+    predict = st.sidebar.selectbox('Select Clustering Algorithm', ['Agglomerative Clustering','Gaussian Mixture Model (GMM)'])
     gender_mapping = {'Female': 0, 'Male': 1}
     marital_status_mapping = {'Single': 2, 'Married': 0, 'Prefer not to say': 1}
     occupation_mapping = {'Student': 3, 'Employee': 0, 'Self Employeed': 2, 'House wife': 1}
@@ -148,7 +148,7 @@ elif selection == 'Input data':
     feedback_mapping = {'Negative ': 0, 'Positive': 1}
     output_mapping = {'No': 0, 'Yes': 1}
 
-    if predict == 'Hierachical Clustering':
+    if predict == 'Agglomerative Clustering':
 
         predict_model1 = AgglomerativeClustering(n_clusters=2, affinity='cosine', linkage='single')
         predict_model1.fit(pca_df_1)

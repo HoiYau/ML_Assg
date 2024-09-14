@@ -18,10 +18,10 @@ from streamlit_folium import st_folium
 
 st.set_page_config(page_title="Clustering App", layout="wide")
 
-preprocessed_df = pd.read_csv("C:/Users/NITRO 5/Downloads/csv/preprocessed.csv")
-standardize_df = pd.read_csv("C:/Users/NITRO 5/Downloads/csv/standardize.csv")
-encoded_df = pd.read_csv("C:/Users/NITRO 5/Downloads/csv/encoded.csv")
-with open("C:/Users/NITRO 5/Downloads/csv/scaler.pkl", "rb") as f:
+preprocessed_df = pd.read_csv("preprocessed.csv")
+standardize_df = pd.read_csv("standardize.csv")
+encoded_df = pd.read_csv("encoded.csv")
+with open("scaler.pkl", "rb") as f:
     scaler = pickle.load(f)
 
 preprocessed_df1 = preprocessed_df.drop(columns=['latitude', 'longitude', 'Pin code', 'Output', 'Feedback'], errors='ignore').copy()

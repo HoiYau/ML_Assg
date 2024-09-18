@@ -370,7 +370,7 @@ elif selection == 'Input data':
             folium.Marker(
                 location=[user_org_df['latitude'].values[0], user_org_df['longitude'].values[0]],
                 radius=10,
-                color=user_color,
+                color='black',
                 fill=True,
                 fill_color=user_color,
                 icon=folium.Icon(icon='user', color=user_color),

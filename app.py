@@ -314,7 +314,7 @@ elif selection == 'Input data':
             # Plot the user input with the same color as its assigned cluster
             user_color = colors(user_cluster)  # Color for the user input's cluster
             ax.scatter(user_input_pca[0, 0], user_input_pca[0, 1], 
-                            color=user_color, 
+                            color='black', 
                             marker='^', 
                             s=100, 
                             label="User Input")
@@ -373,7 +373,7 @@ elif selection == 'Input data':
                 color='black',
                 fill=True,
                 fill_color=user_color,
-                icon=folium.Icon(icon='user', color=user_color),
+                icon=folium.Icon(icon='user', color='black'),
                 popup=f'User Input<br>Cluster: {user_group}<br>Latitude: {user_org_df["latitude"].values[0]}<br>Longitude: {user_org_df["longitude"].values[0]}<br>Feedback: {user_org_df["Feedback"].values[0]}<br>Output: {user_org_df["Output"].values[0]}'
             ).add_to(cluster_groups[user_group])
 

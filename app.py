@@ -226,7 +226,7 @@ elif selection == 'Input data':
                 # Plot the user input with the same color as its assigned cluster
                 user_color = colors(user_cluster)  # Color for the user input's cluster
                 ax.scatter(user_input_pca[0, 0], user_input_pca[0, 1], 
-                            color=black, 
+                            color='black', 
                             marker='^', 
                             s=100, 
                             label="User Input")
